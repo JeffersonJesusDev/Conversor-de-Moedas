@@ -27,7 +27,7 @@ public class MenuModel {
                 System.out.println("*****************************************************");
                 opcao = sc.next();
 
-                if (!opcao.matches("[1-7]")){
+                if (!opcao.matches("[1-7 ou Sair]")){
                     throw new IllegalArgumentException("Opção inválida. Escolha uma opção de 1 a 7.");
                 }
 
@@ -81,8 +81,9 @@ public class MenuModel {
                         usdAmount = copAmount * exchangeRate;
                         System.out.printf("%.2f COP equivalem a %.2f USD%n", copAmount, usdAmount);
                         break;
-                    default:
-                        break;
+                    case "7":
+                        return;
+
                 }
             }catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
