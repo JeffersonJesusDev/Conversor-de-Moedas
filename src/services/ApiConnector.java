@@ -14,8 +14,6 @@ import java.util.Map;
 
 public class ApiConnector {
 
-    Gson gson = new GsonBuilder().setPrettyPrinting().create();
-
     public CurrencyData getCurrency(String base) {
 
         try {

@@ -12,7 +12,7 @@ public class MenuModel {
         var opcao = "";
 
         while (!opcao.equalsIgnoreCase("sair")){
-
+            System.out.println("*****************************************************");
             System.out.println("\nSeja bem vindo/a ao Conversor de Moeda =]");
             System.out.println("1) Dólar =>> Peso argentino");
             System.out.println("2) Peso argentino =>> Dólar");
@@ -22,18 +22,63 @@ public class MenuModel {
             System.out.println("6) Peso colombiano =>> Dólar");
             System.out.println("7) Sair");
 
+            System.out.println("Escola a opção válida: ");
+            System.out.println("*****************************************************");
             opcao = sc.next();
 
             switch (opcao){
                 case "1":
                     System.out.print("Digite a quantidade em dólar: ");
+                    sc.nextLine();
                     double usdAmount = sc.nextDouble();
                     CurrencyData currencyData = api.getCurrency("USD");
                     double exchangeRate = currencyData.conversionRates().get("ARS");
                     double arsAmount = usdAmount * exchangeRate;
                     System.out.printf("%.2f USD equivalem a %.2f ASR%n", usdAmount, arsAmount);
-                break;
+                    break;
+                case "2":
+                    System.out.print("Digite a quantidade em Peso argentino: ");
+                    arsAmount = sc.nextDouble();
+                    currencyData = api.getCurrency("ARS");
+                    exchangeRate = currencyData.conversionRates().get("USD");
+                    usdAmount = arsAmount * exchangeRate;
+                    System.out.printf("%.2f ARS equivalem a %.2f USD%n", arsAmount, usdAmount);
+                    break;
+                case "3":
+                    System.out.print("Digite a quantidade em Dolar: ");
+                    usdAmount = sc.nextDouble();
+                    currencyData = api.getCurrency("USD");
+                    exchangeRate = currencyData.conversionRates().get("BRL");
+                    double brlAmount = usdAmount * exchangeRate;
+                    System.out.printf("%.2f USD equivalem a %.2f BRL%n", usdAmount, brlAmount);
+                    break;
+                case "4":
+                    System.out.print("Digite a quantidade em Real: ");
+                    brlAmount = sc.nextDouble();
+                    currencyData = api.getCurrency("BRL");
+                    exchangeRate = currencyData.conversionRates().get("USD");
+                    usdAmount = brlAmount * exchangeRate;
+                    System.out.printf("%.2f BRL equivalem a %.2f USD%n", brlAmount, usdAmount);
+                    break;
+                case "5":
+                    System.out.print("Digite a quantidade em dólar: ");
+                    usdAmount = sc.nextDouble();
+                    currencyData = api.getCurrency("USD");
+                    exchangeRate = currencyData.conversionRates().get("COP");
+                    double copAmount = usdAmount * exchangeRate;
+                    System.out.printf("%.2f USD equivalem a %.2f COP%n", usdAmount, copAmount);
+                    break;
+                case "6":
+                    System.out.print("Digite a quantidade em dólar: ");
+                    copAmount = sc.nextDouble();
+                    currencyData = api.getCurrency("COP");
+                    exchangeRate = currencyData.conversionRates().get("USD");
+                    usdAmount = copAmount * exchangeRate;
+                    System.out.printf("%.2f COP equivalem a %.2f USD%n", copAmount, usdAmount);
+                    break;
+                default: break;
             }
+
         }
     }
 }
